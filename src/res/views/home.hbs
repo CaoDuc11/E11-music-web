@@ -1,0 +1,12 @@
+<div class="bar-items">
+     <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search">
+     {{#if user}}
+      {{!-- <img src={{user.avatar}} alt=""> --}}
+     {{else}}
+     <div class="authentication">
+        <a class="render-log-in" href="/authentical/login">Log In</a>
+        <a class="render-sign-up" href="/authentical/signup">Sign Up</a>
+     </div>
+     {{/if}}
+</div>
+

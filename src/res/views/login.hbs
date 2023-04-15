@@ -1,0 +1,42 @@
+<form class="log-in" method="post" action="/authentical/login/checkLogin">
+    <div class="form-title">
+        <span class="oi oi-audio-spectrum"></span>
+        <h1>Log in</h1>
+        <p class="check-message">{{message}}</p>
+    </div>
+    <div class="form-body">
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <span class="form-message"></span>
+        </div>
+
+        <p>Don't have one ? <a href="/authentical/signup">Sign up</a> here</p>
+    </div>
+    <div class="submit-btn">
+        <button type="submit" class="btn">Log in</button>
+    </div>
+</form>
+
+<script src="/js/validator.js"></script>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function () {
+        // Mong muốn của chúng ta
+        Validator({
+          form: '.log-in',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+            Validator.isRequired('#email', 'Vui lòng nhập email của bạn'),
+            Validator.isEmail('#email'),
+            Validator.minLength('#password', 6),
+          ],
+        })
+     })    
+</script>

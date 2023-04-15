@@ -1,0 +1,116 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+}
+
+.form-message {
+  color: red;
+  font-size: 12px;
+}
+
+.container {
+  flex: 3;
+  background-color: #000;
+}
+
+.container .bar-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .bar-items {
+  margin: 8px 0;
+}
+
+.container .bar-items .search-bar {
+  width: 60%;
+}
+
+.container .bar-items .authentication a {
+  margin: 0 8px;
+}
+
+.form-container .log-in {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  width: 30%;
+  height: 80%;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.form-title {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.form-title span {
+  font-size: 32px;
+}
+
+.form-title h1 {
+  display: inline-block;
+}
+
+.form-body {
+  padding: 0 5%;
+  margin-top: 32px;
+}
+
+.form-body .form-group {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.form-body .form-group input {
+  width: 100%;
+}
+
+.log-in .form-body p {
+  margin-top: 16px;
+}
+
+.log-in .submit-btn {
+  padding: 0 5%;
+  margin-top: 64px;
+}
+
+.form-container .sign-up {
+  position: absolute;
+  top: 2.5%;
+  left: 20%;
+  width: 60%;
+  height: 95%;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.sign-up .submit-btn {
+  padding: 0 5%;
+  margin-top: 8px;
+}
+
+.btn {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #333;
+}
+
+/*# sourceMappingURL=app.css.map */
