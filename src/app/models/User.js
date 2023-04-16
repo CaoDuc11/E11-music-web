@@ -7,6 +7,14 @@ const User = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   avatar: { type: String },
+  recent_play: 
+    {
+      type: [{
+        song_name: { type: String },
+        time_play: { type: Date },
+      }],
+      maxItems: 10,
+    }
 }, {
   timestamps: true,
 });

@@ -4,6 +4,8 @@ const handlebars = require('express-handlebars')
 const path = require('path')
 const methodOverride = require('method-override')
 const app = express()
+const session = require('express-session')
+const cookieParser = require("cookie-parser")
 const port = 3000
 
 const route = require('./routes')
@@ -20,6 +22,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json()) 
 
 app.use(methodOverride('_method'))
+app.use(cookieParser());
+
+app.use(session({
+  secret: "amar",
+  saveUninitialized: true,
+  resave: true
+}));
 
 app.engine('hbs', handlebars.engine({
     extname: '.hbs',

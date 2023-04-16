@@ -1,12 +1,28 @@
 <div class="bar-items">
-     <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search">
      {{#if user}}
       {{!-- <img src={{user.avatar}} alt=""> --}}
+         <a href="/authentical/logout">Log Out</a> 
+         <a href="/user/recent_played">Recent play</a>
      {{else}}
      <div class="authentication">
-        <a class="render-log-in" href="/authentical/login">Log In</a>
-        <a class="render-sign-up" href="/authentical/signup">Sign Up</a>
+         <a class="render-log-in" href="/authentical/login">Log In</a>
+         <a class="render-sign-up" href="/authentical/signup">Sign Up</a>
      </div>
      {{/if}}
+
 </div>
+
+{{#each artists}}
+<div class="artists">
+   <h1>{{this.name}}</h1>
+</div>
+{{/each}}
+
+{{#each songs}}
+<div class="songs">
+   <a href="/user/{{this.name}}/add_recent_play"><h3>{{this.name}}</h2></a>
+   <h4>{{this.artist_name}}</h3>
+</div>
+{{/each}}
+
 
