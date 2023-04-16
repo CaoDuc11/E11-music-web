@@ -20,9 +20,69 @@
 
 {{#each songs}}
 <div class="songs">
-   <a href="/user/{{this.name}}/add_recent_play"><h3>{{this.name}}</h2></a>
+   <h3>{{this.name}}</h3>
+   <audio class="myAudio" src={{this.sound}}></audio>
+   <a href="/user/{{this.name}}/add_recent_play" onclick="playAudio(event, this)">Play</a>
+   <a onclick="pauseAudio()">Pause</a>
+   <span class="oi oi-heart like"></span>
    <h4>{{this.artist_name}}</h3>
 </div>
 {{/each}}
+
+<script>
+      const audio = document.getElementsByClassName("myAudio")[0]
+      const playlist = document.getElementsByClassName("songs")
+      let currentSong = 0
+
+      // Load first song
+      audio.src = playlist[currentSong].getElementsByTagName('audio')[0].src
+      audio.load()
+
+      // Play first song if there was a previous state
+      if (sessionStorage.getItem("isPlaying") === "true") {
+         audio.play()
+      }
+
+      // Play song
+      function playAudio(event, link) {
+         // Get index of clicked song
+         currentSong = Array.from(playlist).indexOf(link.parentNode)
+         
+         if (audio.currentTime != 0 && currentSong != sessionStorage.getItem("currentSong")) {
+            audio.load()
+         }
+
+         audio.play()
+         
+         // Update sessionStorage
+         sessionStorage.setItem("isPlaying", "true")
+         sessionStorage.setItem("currentSong", currentSong)
+      }
+
+      // Pause song
+      function pauseAudio() {
+         audio.pause()
+         sessionStorage.setItem("isPlaying", "false")
+         sessionStorage.setItem("currentTime", audio.currentTime)
+      }
+
+      // Load current song on page load
+      window.addEventListener('load', function() {
+         if (sessionStorage.getItem("isPlaying") === "true") {
+            currentSong = sessionStorage.getItem("currentSong")
+            audio.src = playlist[currentSong].getElementsByTagName('audio')[0].src
+            audio.currentTime = sessionStorage.getItem("currentTime")
+            audio.play()
+         }
+      })
+
+      // Save state before leaving page
+      window.addEventListener("beforeunload", function() {
+         sessionStorage.setItem("isPlaying", audio.paused ? "false" : "true")
+         sessionStorage.setItem("currentSong", currentSong)
+         sessionStorage.setItem("currentTime", audio.currentTime)
+      })
+
+</script>
 
 

@@ -4,8 +4,11 @@ const slug = require('mongoose-slug-generator')
 
 const Song = new Schema({
   name: { type: String },
-  likes: { type: String },
+  likes: { type: Number },
   artist_name: { type: String },
+  image: { type: String },
+  sound: { type: String },
+  type: { type: String },
 });
 
 // Add plugin
