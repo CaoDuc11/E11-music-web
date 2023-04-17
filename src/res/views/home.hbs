@@ -83,6 +83,7 @@
       window.addEventListener("beforeunload", function() {
          sessionStorage.setItem("isPlaying", audio.paused ? "false" : "true")
          sessionStorage.setItem("currentSong", currentSong)
+         sessionStorage.setItem("currentTime", audio.currentTime)
          sessionStorage.setItem('scrollPosition', window.pageYOffset)
       })
 
