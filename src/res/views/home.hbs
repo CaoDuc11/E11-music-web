@@ -32,16 +32,6 @@
 <script>
       const audio = document.getElementsByClassName("myAudio")[0]
       const playlist = document.getElementsByClassName("songs")
-      let currentSong = 0
-
-      // Load first song
-      audio.src = playlist[currentSong].getElementsByTagName('audio')[0].src
-      audio.load()
-
-      // Play first song if there was a previous state
-      if (sessionStorage.getItem("isPlaying") === "true") {
-         audio.play()
-      }
 
       // Play song
       function playAudio(event, link) {
@@ -51,12 +41,16 @@
          if (audio.currentTime != 0 && currentSong != sessionStorage.getItem("currentSong")) {
             audio.load()
          }
+         else if (audio.currentTime != 0 && currentSong == sessionStorage.getItem("currentSong")){
+            event.preventDefault()
+         }
 
          audio.play()
          
          // Update sessionStorage
          sessionStorage.setItem("isPlaying", "true")
          sessionStorage.setItem("currentSong", currentSong)
+         sessionStorage.setItem('scrollPosition', window.pageYOffset)
       }
 
       // Pause song
@@ -69,6 +63,15 @@
       // Load current song on page load
       window.addEventListener('load', function() {
          if (sessionStorage.getItem("isPlaying") === "true") {
+            var scrollPosition = sessionStorage.getItem("scrollPosition");
+            if (scrollPosition !== null) {
+               window.scrollTo({
+                  top: scrollPosition,
+                  left: 0,
+                  behavior: "smooth"
+               });
+               sessionStorage.removeItem("scrollPosition");
+            }
             currentSong = sessionStorage.getItem("currentSong")
             audio.src = playlist[currentSong].getElementsByTagName('audio')[0].src
             audio.currentTime = sessionStorage.getItem("currentTime")
@@ -80,7 +83,7 @@
       window.addEventListener("beforeunload", function() {
          sessionStorage.setItem("isPlaying", audio.paused ? "false" : "true")
          sessionStorage.setItem("currentSong", currentSong)
-         sessionStorage.setItem("currentTime", audio.currentTime)
+         sessionStorage.setItem('scrollPosition', window.pageYOffset)
       })
 
 </script>
